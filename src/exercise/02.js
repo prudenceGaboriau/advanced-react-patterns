@@ -8,8 +8,13 @@ function Toggle({children}) {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
 
-  return React.Children.map(children, (child, index) => {
-    return React.cloneElement(child, {on, toggle}, `The toggle is ${on ? 'on': 'off'}`)
+  return React.Children.map(children, (child) => {
+    if (allowedTypes.includes(child.type)) {
+      const newChild =  React.cloneElement(child, {on, toggle})
+      return newChild;
+    }
+
+    return child
   })  
 }
 
@@ -26,12 +31,15 @@ const ToggleButton = ({on, toggle}) => {
   return <Switch on={on} onClick={toggle} />
 }
 
+const allowedTypes = [ToggleOff, ToggleOn, ToggleButton]
+
 function App() {
   return (
     <div>
       <Toggle>
         <ToggleOn>The button is on</ToggleOn>
         <ToggleOff>The button is off</ToggleOff>
+        <span>Hello</span>
         <ToggleButton />
       </Toggle>
     </div>
