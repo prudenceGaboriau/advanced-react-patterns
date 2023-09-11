@@ -26,9 +26,8 @@ class Switch extends React.Component {
       className,
       'toggle-btn',
       on ? 'toggle-btn-on' : 'toggle-btn-off',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    ].filter(Boolean).join(' ');
+    
     return (
       <label aria-label={ariaLabel || 'Toggle'} style={{display: 'block'}}>
         <input
