@@ -72,7 +72,7 @@ function App() {
   })
 
   return (
-    <div>
+    <div>                 
       <Switch
         {...getTogglerProps({
           disabled: clickedTooMuch,
